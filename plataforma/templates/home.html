@@ -3,7 +3,6 @@
 
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'plataforma/css/home.css' %}">
-
 {% endblock %}
 
 {% block 'body' %}
@@ -13,13 +12,14 @@
                 data-target="#exampleModal">
             FILTRAR
         </button>
+        {% if imoveis %}
         <div class="row">
             {% for imovel in imoveis %}
-            <div class="col-md cont">
+            <div class="col-md cont" style="flex-grow: 0;">
                 <div class="card_imovel">
                     <img class="img_capa_imovel" src="{{imovel.imagens.all.0.img.url}}">
                     <div class="informacoes_imoveis">
-                        <a class="a_none" href="{% url 'imovel' imovel.id %}"><h4 class="valor">R$ {{imovel.valor}}</h4></a>
+                        <a class="a_none" href="{% url 'imovel' imovel.id %}"><h4 class="valor">R$ {{imovel.valor|floatformat}}</h4></a>
                         <p>{{imovel.rua}}, {{imovel.cidade}}</p>
                         <br>
                         <img width="7%" src="{% static 'plataforma/img/heart.png' %}">
@@ -28,6 +28,11 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <hr>
+        <br>
+        <h5>Nenhum imóvel encontrado.</h5>
+        {% endif %}
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
