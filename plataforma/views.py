@@ -34,7 +34,7 @@ def home(request):
 def imovel(request, id):
     imovel = get_object_or_404(Imovel, id=id)
     sugestoes = Imovel.objects.filter(cidade=imovel.cidade).exclude(id=id)[:3]
-    print(imovel)
+
     return render(request, 'imovel.html', {'imovel': imovel, 'sugestoes': sugestoes})
 
 
