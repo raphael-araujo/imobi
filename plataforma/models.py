@@ -72,7 +72,7 @@ class Visitas(models.Model):
 
     imovel = models.ForeignKey(Imovel, on_delete=models.DO_NOTHING)
     usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    dia = models.CharField(max_length=20)
+    dia = models.CharField(max_length=2, choices=choices)
     horario = models.TimeField()
     status = models.CharField(max_length=1, choices=choices_status, default="A")
 
